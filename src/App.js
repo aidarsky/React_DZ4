@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import './index.css';
 
-function App() {
+function RegistrationForm() {
+  const [fullName, setFullName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert(`Full Name: ${fullName}\nPhone: ${phone}\nEmail: ${email}`);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="registration-form">
+      <h2>Registration Form</h2>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="fullName">Full Name</label>
+        <input type="text" id="fullName" value={fullName} onChange={(e) => setFullName(e.target.value)} />
+
+        <label htmlFor="phone">Phone Number</label>
+        <input type="tel" id="phone" value={phone} onChange={(e) => setPhone(e.target.value)} />
+
+        <label htmlFor="email">Email Address</label>
+        <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+
+        <button type="submit">Submit</button>
+      </form>
     </div>
   );
 }
 
-export default App;
+export default RegistrationForm;
